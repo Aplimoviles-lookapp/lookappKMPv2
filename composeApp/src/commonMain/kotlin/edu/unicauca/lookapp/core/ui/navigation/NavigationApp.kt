@@ -18,6 +18,7 @@ import edu.unicauca.lookapp.core.ui.components.ModalDrawerContent
 import edu.unicauca.lookapp.core.ui.components.TopAppBar
 import edu.unicauca.lookapp.core.ui.screen.credits.CreditsScreen
 import edu.unicauca.lookapp.core.ui.screen.dummy.DummyScreen
+import edu.unicauca.lookapp.features.userprofile.ui.screen.UserProfileScreen
 import kotlinx.coroutines.launch
 
 
@@ -94,7 +95,7 @@ fun NavigationApp(modifier: Modifier = Modifier) {
                     DummyScreen("Saved")
                 }
                 composable(route = RouteEnum.Profile.route) {
-                    DummyScreen("Profile")
+                   UserProfileScreen()
                 }
                 composable(route = RouteEnum.Notifications.route) {
                     DummyScreen("Notifications")

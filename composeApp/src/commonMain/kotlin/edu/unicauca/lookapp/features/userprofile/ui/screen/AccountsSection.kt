@@ -1,0 +1,115 @@
+package edu.unicauca.lookapp.features.userprofile.ui.screen
+
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Logout
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FloatingActionButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.ui.tooling.preview.Preview
+
+@Composable
+fun AccountsSection(
+    accounts: List<UserAccount>,
+    modifier: Modifier = Modifier,
+    onClickedAccount: (UserAccount?) -> Unit = {},
+    onClickedAddAccount: () -> Unit = {},
+    onClickedLoggoutAll: () -> Unit = {},
+) {
+    Surface(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(30.dp),
+        color= MaterialTheme.colorScheme.surface,
+        shape = RoundedCornerShape(16.dp),
+
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxSize().padding(16.dp)
+        ) {
+            Text(
+                "Your Accounts",
+                style = MaterialTheme.typography.labelLarge,
+                modifier = Modifier.align(Alignment.Start)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            UserAccountItemList(
+                list = accounts,
+                onClickedAccount = onClickedAccount
+            )
+            Spacer(modifier = Modifier.height(40.dp))
+            ExtendedFloatingActionButton(
+                onClick = onClickedAddAccount,
+                icon = {
+                    Icon(
+                        imageVector = Icons.Filled.Add,
+                        contentDescription = "Extended floating action button.",
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                },
+                text = {
+                    Text(
+                        text = "Add another account",
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                },
+                modifier = Modifier.width(320.dp),
+                elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 6.dp),
+                containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
+
+
+                )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            ExtendedFloatingActionButton(
+                onClick = onClickedLoggoutAll,
+                icon = {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.Logout,
+                        contentDescription = "Extended floating action button.",
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                },
+                text = {
+                    Text(
+                        text = "Loggout all accounts",
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                },
+                modifier = Modifier.width(320.dp),
+                elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 6.dp),
+                containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
+
+                )
+        }
+    }
+}
+
+@Preview()
+@Composable
+fun AccountsSectionPreview() {
+    AccountsSection(
+        accounts = listOf(
+            UserAccount(0,"Juan", "Juan@gmail.com"),
+            UserAccount(0,"Naren", "Naren@gmail.com"),
+            UserAccount(0,"Freider", "Freider@gmail.com"),
+        ),
+    )
+}
