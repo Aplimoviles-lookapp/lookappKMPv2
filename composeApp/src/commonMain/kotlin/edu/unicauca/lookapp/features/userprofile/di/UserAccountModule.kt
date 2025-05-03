@@ -12,49 +12,22 @@ import edu.unicauca.lookapp.features.userprofile.domain.usecases.GetUserAccounts
 import edu.unicauca.lookapp.features.userprofile.domain.usecases.LoadInitialUserAccountsUseCase
 import edu.unicauca.lookapp.features.userprofile.domain.usecases.SingnoutAllAccountsUseCase
 import edu.unicauca.lookapp.features.userprofile.ui.viewmodel.UserProfileViewModel
+import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
-
 val userModule = module {
     singleOf(::UserAccountDao)
     singleOf(::RoomUserAccountLocalDataSourceImpl).bind<UserAccountDataSource>()
-    single {
-        UserAccountRepository(
-            get<UserAccountDataSource>()
-        )
-    }
+    singleOf(::UserAccountRepository)
+    singleOf(::SessionManager)
 
-    single {
-        SessionManager()
-    }
-
-
-    factory {
-        AddUserAccountUseCase(
-            get<UserAccountRepository>()
-        )
-    }
-    factory {
-        GetUserAccountsUseCase(
-            get<UserAccountRepository>()
-        )
-    }
-    factory {
-        LoadInitialUserAccountsUseCase(
-            get<UserAccountRepository>())
-    }
-
-
-    factory {
-        SingnoutAllAccountsUseCase(
-            get<UserAccountRepository>()
-        )
-    }
+    factoryOf(::AddUserAccountUseCase)
+    factoryOf(::GetUserAccountsUseCase)
+    factoryOf(::LoadInitialUserAccountsUseCase)
+    factoryOf(::SingnoutAllAccountsUseCase)
 
     viewModelOf(::UserProfileViewModel)
-
-
 }
