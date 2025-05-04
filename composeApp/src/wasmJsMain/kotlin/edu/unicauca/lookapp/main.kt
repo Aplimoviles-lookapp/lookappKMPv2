@@ -3,6 +3,7 @@ package edu.unicauca.lookapp
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
 import edu.unicauca.lookapp.core.ui.navigation.NavigationApp
+import edu.unicauca.lookapp.features.saved.di.savedModule
 import edu.unicauca.lookapp.features.userprofile.di.userModule
 import kotlinx.browser.document
 import org.koin.core.context.startKoin
@@ -13,7 +14,8 @@ fun main() {
         // Initialize Koin
         startKoin() {
             modules(
-                userModule
+                userModule,
+                savedModule
             )
         }
         NavigationApp()

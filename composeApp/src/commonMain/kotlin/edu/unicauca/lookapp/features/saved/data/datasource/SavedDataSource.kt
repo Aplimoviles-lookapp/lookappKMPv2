@@ -5,5 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface SavedDataSource {
     fun getSavedItems(userId: Long): Flow<List<ItemEntity>>
+    suspend fun deleteItem(userId:Long,id:Long)
 
 }
