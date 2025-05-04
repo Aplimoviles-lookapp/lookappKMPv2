@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import edu.unicauca.lookapp.core.ui.navigation.NavigationApp
+import edu.unicauca.lookapp.features.saved.di.savedModule
 import edu.unicauca.lookapp.features.userprofile.di.userModule
 import org.koin.compose.koinInject
 import org.koin.core.context.startKoin
@@ -15,7 +16,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         startKoin() {
             modules(
-                userModule
+                userModule,
+                savedModule
             )
         }
         setContent {
