@@ -7,6 +7,7 @@ import edu.unicauca.lookapp.features.saved.data.dao.SavedDao
 import edu.unicauca.lookapp.features.saved.data.datasource.RoomSavedLocalDataSourceImpl
 import edu.unicauca.lookapp.features.saved.data.datasource.SavedDataSource
 import edu.unicauca.lookapp.features.saved.data.repository.SavedRepository
+import edu.unicauca.lookapp.features.saved.domain.usescases.AddItemToUserUseCase
 import edu.unicauca.lookapp.features.saved.domain.usescases.DeleteSavedUseCase
 import edu.unicauca.lookapp.features.saved.domain.usescases.GetSavedUseCase
 import edu.unicauca.lookapp.features.saved.ui.viewmodel.SavedViewModel
@@ -24,6 +25,7 @@ val savedModule = module {
 
     factoryOf(::GetSavedUseCase)
     factoryOf(::DeleteSavedUseCase)
+    factoryOf(::AddItemToUserUseCase)
 
     viewModelOf(::SavedViewModel)
 

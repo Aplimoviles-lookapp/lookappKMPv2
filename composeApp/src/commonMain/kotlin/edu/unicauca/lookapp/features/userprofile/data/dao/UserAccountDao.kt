@@ -13,7 +13,9 @@ class UserAccountDao {
 
     suspend fun insertUserAccount(userAccount: UserAccountEntity) {
         val updatedList = userAccounts.value.toMutableList()
-        updatedList.add(userAccount)
+        val newId = if (updatedList.isEmpty()) 1L else (updatedList.maxOf { it.userAccountId } + 1)
+        val userWithId = userAccount.copy(userAccountId = newId)
+        updatedList.add(userWithId)
         userAccounts.value = updatedList
     }
 
@@ -25,6 +27,9 @@ class UserAccountDao {
         userAccounts.value = mutableListOf()
     }
 
+    suspend fun updateAll(users: List<UserAccountEntity>) {
+        userAccounts.value = users.toMutableList()
+    }
 
     suspend fun count(): Int{
         return userAccounts.value.size

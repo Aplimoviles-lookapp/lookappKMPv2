@@ -12,6 +12,8 @@ class RoomSavedLocalDataSourceImpl (private val savedDao: SavedDao):SavedDataSou
     override suspend fun deleteItem(userId: Long, id: Long) {
         savedDao.deleteItem(userId,id)
     }
-
+    override suspend fun addItem(userId: Long) {
+        savedDao.addItem(userId)
+    }
 
 }

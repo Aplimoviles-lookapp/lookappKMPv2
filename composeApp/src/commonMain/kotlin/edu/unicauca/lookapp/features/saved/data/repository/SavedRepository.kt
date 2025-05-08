@@ -12,4 +12,8 @@ class SavedRepository ( private val savedDataSource: SavedDataSource){
     suspend fun deleteItem(userId: Long, id:Long){
         savedDataSource.deleteItem(userId,id)
     }
+
+    suspend fun addItem(userId: Long){
+        savedDataSource.addItem(userId)
+    }
 }
